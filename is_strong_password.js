@@ -16,6 +16,7 @@ class StrongPassword {
 
         this.locale = params.locale || 'en_US';
         this.password = params.password;
+        this.version = '1.0.1';
     }
 
     /**

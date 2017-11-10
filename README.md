@@ -1,6 +1,6 @@
 # StrongPassword
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-stats] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url]
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-stats] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Codecov Status][codecov-image]][codecov-url]
 
 Check if the password is strong.
 
@@ -55,3 +55,5 @@ Than you can use all array helpers from this package in your node files.
 [travis-image]: https://img.shields.io/travis/w3nl/strongpassword/master.svg
 [coveralls-url]: https://coveralls.io/r/w3nl/strongpassword
 [coveralls-image]: https://img.shields.io/coveralls/w3nl/strongpassword/master.svg
+[codecov-url]: https://codecov.io/gh/w3nl/strongpassword
+[codecov-image]: https://img.shields.io/codecov/c/github/w3nl/strongpassword.svg
