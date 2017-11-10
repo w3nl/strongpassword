@@ -8,7 +8,7 @@ here an example:
 
 ```
 var strongPasswordValidation = new StrongPassword({
-    password: 'this is a strong password',
+    password: 'This is 1 strong password!',
     locale:   'en_US'
 });
 
