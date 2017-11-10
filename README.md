@@ -47,7 +47,7 @@ require('strongpassword');
 Than you can use all array helpers from this package in your node files.
 
 
-[downloads-image]: https://img.shields.io/npm/dm/strongpassword.svg
+[downloads-image]: https://img.shields.io/npm/dt/strongpassword.svg
 [npm-url]: https://www.npmjs.com/package/strongpassword
 [npm-image]: https://img.shields.io/npm/v/strongpassword.svg
 [npm-stats]: https://npm-stat.com/charts.html?package=strongpassword
