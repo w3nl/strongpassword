@@ -15,7 +15,7 @@ class StrongPassword {
         }
 
         this.locale = params.locale || 'en_US';
-        this.password = params.password || process.argv[2];
+        this.password = params.password;
     }
 
     /**
