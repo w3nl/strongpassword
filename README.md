@@ -4,7 +4,7 @@
 
 Check if the password is strong.
 
-here an example:
+Here an example of a strong password check:
 
 ```
 var strongPasswordValidation = new StrongPassword({
@@ -14,6 +14,62 @@ var strongPasswordValidation = new StrongPassword({
 
 console.log(strongPasswordValidation.isStrong);
 ```
+
+Here an example of a weak password check:
+```
+var strongPasswordValidation = new StrongPassword({
+    password: 'Not strong',
+    locale:   'en_US'
+});
+
+console.log(strongPasswordValidation.isStrong);
+console.log(strongPasswordValidation.reason);
+```
+
+## Params
+
+* password
+* locale ('en_US')
+* minimumLength (10)
+* minimumWords (4)
+* numbers (true)
+* lowercase (true)
+* uppercase (uppercase)
+* dictionaries (typo/dictionaries)
+
+Only the password param is required.
+For the other params you see the default value in the list.
+
+### locale
+
+With this param you can set the dictionary for the words.
+This will check if you  only use normal words, so you can remember it.
+
+### minimumLength
+
+With this param you can set the minimum length of the password.
+The default length is a total of 10 chars, including spaces.
+
+### minimumWords
+
+With this param you can set the minimum words in the password.
+The default length is a total of 4 words, so the password is long, and not easy to guess.
+
+### numbers
+
+With this param you can set that the password must have a number.
+
+### lowercase
+
+With this param you can set that the password must have a alphabetical lowercase char.
+
+### uppercase
+
+With this param you can set that the password must have a alphabetical uppercase char.
+
+### dictionaries
+
+You can add another dictionary than en_US.
 
 
 ## Test the package.

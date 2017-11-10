@@ -52,7 +52,7 @@ var StrongPassword = function () {
 
         this.dictionaries = params.dictionaries || false;
 
-        this.version = '1.1.2';
+        this.version = '1.1.3';
 
         results = this.check();
         this.strong = results.strong;
