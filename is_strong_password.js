@@ -10,6 +10,10 @@ class StrongPassword {
      * @param {object} params
      */
     constructor(params) {
+        if(!params) {
+            return;
+        }
+
         this.locale = params.locale || 'en_US';
         this.password = params.password || process.argv[2];
     }
@@ -22,6 +26,10 @@ class StrongPassword {
     get isStrong() {
         let strong = true;
         const dictionary = new Typo(this.locale);
+
+        if(!this.password) {
+            return false;
+        }
 
         if(this.password.length < 8) {
             return false;
