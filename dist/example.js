@@ -4,4 +4,12 @@ let strongPasswordValidation = new StrongPassword({
     dictionaries: 'dictionaries'
 });
 
-console.log('strong password?' + strongPasswordValidation.isStrong);
+console.log('Strong password? ' + strongPasswordValidation.isStrong);
+
+var weakPasswordValidation = new StrongPassword({
+    password: 'Not strong',
+    locale:   'en_US'
+});
+
+console.log('Strong password? ' + weakPasswordValidation.isStrong);
+console.log('Reason? ' + weakPasswordValidation.reason);

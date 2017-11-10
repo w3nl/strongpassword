@@ -11,7 +11,14 @@
     "keywords": [
         "javascript",
         "password",
-        "validation"
+        "validation",
+        "strong",
+        "secure",
+        "login",
+        "register",
+        "account",
+        "profile",
+        "user"
     ],
     "repository": {
         "type": "git",
