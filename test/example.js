@@ -23,6 +23,17 @@ describe('Check the validator.', function() {
         assert.equal(true, strongPasswordValidation.isStrong);
     });
 
+    var strongPasswordValidation2 = new StrongPassword({
+        password:      'this is a strong password',
+        locale:        'en_US',
+        minimumLength: 10,
+        minimumWords:  4
+    });
+
+    it('Check if the password is strong, test 2.', function() {
+        assert.equal(true, strongPasswordValidation2.isStrong);
+    });
+
     var weakPasswordValidation = new StrongPassword({
         password: 'weak',
         locale:   'en_US'

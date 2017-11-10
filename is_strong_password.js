@@ -16,7 +16,9 @@ class StrongPassword {
 
         this.locale = params.locale || 'en_US';
         this.password = params.password;
-        this.version = '1.0.1';
+        this.minimumLength = params.minimumLength || 8;
+        this.minimumWords = params.minimumWords || 3;
+        this.version = '1.0.2';
     }
 
     /**
@@ -32,11 +34,11 @@ class StrongPassword {
             return false;
         }
 
-        if(this.password.length < 8) {
+        if(this.password.length < this.minimumLength) {
             return false;
         }
 
-        if(this.password.split(' ').length < 3) {
+        if(this.password.split(' ').length < this.minimumWords) {
             return false;
         }
 
