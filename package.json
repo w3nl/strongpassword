@@ -1,6 +1,6 @@
 {
     "name": "strongpassword",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Check if the password is strong.",
     "main": "is_strong_password.js",
     "files": [

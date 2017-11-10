@@ -14,7 +14,7 @@ class StrongPassword {
 
         this.strong = false;
 
-        if(!params) {
+        if (!params) {
             this.reasonText = 'no params';
 
             return;
@@ -24,7 +24,22 @@ class StrongPassword {
         this.password = params.password;
         this.minimumLength = params.minimumLength || 10;
         this.minimumWords = params.minimumWords || 4;
-        this.version = '1.0.3';
+        this.mustHaveNumbers = true;
+        if (typeof params.numbers == 'boolean') {
+            this.mustHaveNumbers = params.numbers;
+        }
+
+        this.mustHaveLowerCase = true;
+        if (typeof params.lowercase == 'boolean') {
+            this.mustHaveLowerCase = params.lowercase;
+        }
+
+        this.mustHaveUpperCase = true;
+        if (typeof params.uppercase == 'boolean') {
+            this.mustHaveUpperCase = params.uppercase;
+        }
+
+        this.version = '1.0.4';
 
         results = this.check();
         this.strong = results.strong;
@@ -39,56 +54,63 @@ class StrongPassword {
     check() {
         let strong = true;
         let reasonText;
+        let notRealWords = [];
         const dictionary = new Typo(this.locale);
 
-        if(!this.password) {
+        if (!this.password) {
             return {
                 strong: false,
                 reason: 'empty'
             };
         }
 
-        if(this.password.length < this.minimumLength) {
+        if (this.password.length < this.minimumLength) {
             return {
                 strong: false,
                 reason: 'to short'
             };
         }
 
-        if(this.password.split(' ').length < this.minimumWords) {
+        if (this.password.split(' ').length < this.minimumWords) {
             return {
                 strong: false,
                 reason: 'too few words'
             };
         }
 
-        if (!this.password.match(/\d+/g)) {
+        if (this.mustHaveNumbers && !this.password.match(/\d+/g)) {
             return {
                 strong: false,
                 reason: 'has no numbers'
             };
         }
 
-        if (!this.password.match(/[a-z]/g)) {
+        if (this.mustHaveLowerCase && !this.password.match(/[a-z]/g)) {
             return {
                 strong: false,
                 reason: 'has no alphabet chars'
             };
         }
 
-        if (!this.password.match(/[A-Z]/g)) {
+        if (this.mustHaveUpperCase && !this.password.match(/[A-Z]/g)) {
             return {
                 strong: false,
                 reason: 'has no uppercase alphabet chars'
             };
         }
 
-        this.password.split(' ').forEach(function(val) {
-            if(!dictionary.check(val) && !Number.isInteger(val * 1)) {
-                reasonText = 'doesnt has a real word';
-                strong = false;
+        this.password.split(' ').forEach(function(value) {
+            var cleanValue = value.replace(/[,.?!]/g, '');
+
+            if (!dictionary.check(cleanValue) && !Number.isInteger(cleanValue * 1)) {
+                notRealWords.push(value);
             }
         });
+
+        if (notRealWords.length > 0) {
+            reasonText = 'doesnt has a real word(s) [' + (notRealWords.join(', ')) + ']';
+            strong = false;
+        }
 
         return {
             strong: strong,

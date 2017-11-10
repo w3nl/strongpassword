@@ -115,4 +115,29 @@ describe('Check the validator.', function() {
         console.log(weakPasswordValidation8.reason);
         assert.equal(false, weakPasswordValidation8.isStrong);
     });
+
+    var weakPasswordValidation9 = new StrongPassword({
+        password:      'password',
+        locale:        'en_US',
+        numbers:       false,
+        lowercase:     false,
+        uppercase:     false,
+        minimumLength: 8,
+        minimumWords:  1
+    });
+
+    it('Check if the password is weak, test 9.', function() {
+        console.log(weakPasswordValidation9.reason);
+        assert.equal(true, weakPasswordValidation9.isStrong);
+    });
+
+    var weakPasswordValidation10 = new StrongPassword({
+        password:     'My 1st Password!',
+        locale:       'en_US',
+        minimumWords: 3
+    });
+
+    it('Check if the password is weak, test 10.', function() {
+        assert.equal(true, weakPasswordValidation10.isStrong);
+    });
 });
