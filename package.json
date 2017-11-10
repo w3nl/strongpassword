@@ -1,10 +1,12 @@
 {
     "name": "strongpassword",
-    "version": "1.0.4",
+    "version": "1.1.0",
     "description": "Check if the password is strong.",
-    "main": "is_strong_password.js",
+    "main": "js/is_strong_password.js",
     "files": [
-        "is_strong_password.js"
+        "js/is_strong_password.js",
+        "dist/js/app.js",
+        "dist/js/app.js.map"
     ],
     "keywords": [
         "javascript",
@@ -16,6 +18,7 @@
         "url": "https://github.com/w3nl/strongpassword.git"
     },
     "scripts": {
+        "build": "./buildHook.sh $PWD",
         "lint": "eslint js/*.js --config .eslintrc",
         "test": "mocha --reporter spec",
         "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && codecov && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
@@ -39,7 +42,30 @@
         "mocha": "^3.5.0",
         "mocha-lcov-reporter": "^1.3.0",
         "coveralls": "^2.13.1",
-        "codecov": "^2.3.0"
+        "codecov": "^2.3.0",
+        "autoprefixer": "6.7.2",
+        "babel-preset-es2015": "6.22.0",
+        "babel-register": "6.22.0",
+        "browser-sync": "2.18.7",
+        "del": "2.2.2",
+        "gulp": "gulpjs/gulp#4.0",
+        "gulp-autoprefixer": "3.1.1",
+        "gulp-babel": "7.0.0",
+        "gulp-concat": "2.6.1",
+        "gulp-data": "1.2.1",
+        "gulp-eslint": "3.0.1",
+        "gulp-modernizr": "1.0.0-alpha",
+        "gulp-rev": "7.1.2",
+        "gulp-sass": "3.1.0",
+        "gulp-sourcemaps": "2.4.1",
+        "gulp-stylelint": "3.7.0",
+        "gulp-uglify": "2.0.1",
+        "merge-stream": "1.0.1",
+        "node-notifier": "5.1.2",
+        "parse-filepath": "1.0.1",
+        "postcss-reporter": "1.3.3",
+        "postcss-urlrewrite": "0.2.1",
+        "rev-del": "1.0.5"
     },
     "engines": {
         "node": ">= 6.0"

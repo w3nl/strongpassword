@@ -1,4 +1,4 @@
-const Typo = require('typo-js');
+const Typo = typeof require != 'undefined' ? require('typo-js') : Typo;
 
 /**
  * Strong password validation.
@@ -39,7 +39,9 @@ class StrongPassword {
             this.mustHaveUpperCase = params.uppercase;
         }
 
-        this.version = '1.0.4';
+        this.dictionaries = params.dictionaries || false;
+
+        this.version = '1.1.0';
 
         results = this.check();
         this.strong = results.strong;
@@ -55,7 +57,13 @@ class StrongPassword {
         let strong = true;
         let reasonText;
         let notRealWords = [];
-        const dictionary = new Typo(this.locale);
+        let dictionary = new Typo(this.locale);
+
+        if (this.dictionaries) {
+            dictionary = new Typo(this.locale, false, false, {
+                dictionaryPath: this.dictionaries
+            });
+        }
 
         if (!this.password) {
             return {

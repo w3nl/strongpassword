@@ -1,7 +1,8 @@
 var assert = require('assert');
-var StrongPassword = require('../js/is_strong_password.js');
+var StrongPassword = require('../node_modules/typo-js/typo.js');
+var StrongPassword = require('../dist/js/app.js');
 
-describe('Check the validator with node.', function() {
+describe('Check the validator in the dist folder.', function() {
     var noPassword = new StrongPassword();
 
     it('Check if you dont send a password.', function() {
