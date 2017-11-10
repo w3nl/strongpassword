@@ -1,6 +1,7 @@
 var assert = require('assert');
 var StrongPassword = require('../node_modules/typo-js/typo.js');
 var StrongPassword = require('../dist/js/app.js');
+var dictionaries = 'node_modules/typo-js/dictionaries';
 
 describe('Check the validator in the dist folder.', function() {
     var noPassword = new StrongPassword();
@@ -135,7 +136,8 @@ describe('Check the validator in the dist folder.', function() {
     var weakPasswordValidation10 = new StrongPassword({
         password:     'My 1st Password!',
         locale:       'en_US',
-        minimumWords: 3
+        minimumWords: 3,
+        dictionaries: dictionaries
     });
 
     it('Check if the password is weak, test 10.', function() {
