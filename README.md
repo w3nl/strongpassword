@@ -4,7 +4,7 @@
 
 Check if the password is strong.
 
-here an example array.
+here an example:
 
 ```
 var strongPasswordValidation = new StrongPassword({
@@ -43,8 +43,6 @@ Use the package in your node files.
 ```
 require('strongpassword');
 ```
-
-Than you can use all array helpers from this package in your node files.
 
 
 [downloads-image]: https://img.shields.io/npm/dt/strongpassword.svg
