@@ -41,7 +41,7 @@ class StrongPassword {
 
         this.dictionaries = params.dictionaries || false;
 
-        this.version = '1.1.0';
+        this.version = '1.1.1';
 
         results = this.check();
         this.strong = results.strong;
