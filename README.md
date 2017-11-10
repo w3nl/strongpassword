@@ -36,6 +36,7 @@ console.log(strongPasswordValidation.reason);
 * lowercase (true)
 * uppercase (uppercase)
 * dictionaries (typo/dictionaries)
+* specials (/[,.?!]/g)
 
 Only the password param is required.
 For the other params you see the default value in the list.
@@ -70,6 +71,10 @@ With this param you can set that the password must have a alphabetical uppercase
 ### dictionaries
 
 You can add another dictionary than en_US.
+
+### specials
+
+You can define the specials that will be ignored in the words.
 
 
 ## Test the package.

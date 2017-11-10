@@ -40,6 +40,7 @@ class StrongPassword {
         }
 
         this.dictionaries = params.dictionaries || false;
+        this.specials = params.specials || /[,.?!]/g;
 
         this.version = '1.1.4';
 
@@ -58,6 +59,7 @@ class StrongPassword {
         let reasonText;
         let notRealWords = [];
         let dictionary;
+        let specials = this.specials;
 
         if (this.dictionaries) {
             dictionary = new Typo(this.locale, false, false, {
@@ -110,7 +112,7 @@ class StrongPassword {
         }
 
         this.password.split(' ').forEach(function(value) {
-            var cleanValue = value.replace(/[,.?!]/g, '');
+            var cleanValue = value.replace(specials, '');
 
             if (!dictionary.check(cleanValue) && !Number.isInteger(cleanValue * 1)) {
                 notRealWords.push(value);

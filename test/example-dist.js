@@ -137,7 +137,8 @@ describe('Check the validator in the dist folder.', function() {
         password:     'My 1st Password!',
         locale:       'en_US',
         minimumWords: 3,
-        dictionaries: dictionaries
+        dictionaries: dictionaries,
+        specials:     /[,.?!]/g
     });
 
     it('Check if the password is weak, test 10.', function() {
