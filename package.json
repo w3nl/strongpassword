@@ -1,0 +1,47 @@
+{
+    "name": "strongpassword",
+    "version": "1.0.0",
+    "description": "Check if the password is strong.",
+    "main": "is_strong_password.js",
+    "files": [
+        "is_strong_password.js"
+    ],
+    "keywords": [
+        "javascript",
+        "password",
+        "validation"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/w3nl/strongpassword.git"
+    },
+    "scripts": {
+        "lint": "eslint js/*.js --config .eslintrc",
+        "test": "mocha --reporter spec",
+        "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && codecov && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+        "cover-check": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    },
+    "author": {
+        "name": "Pieter Wigboldus",
+        "url": "https://hckr.news/"
+    },
+    "bugs": {
+        "url": "https://github.com/w3nl/strongpassword/issues"
+    },
+    "homepage": "https://github.com/w3nl/strongpassword#readme",
+    "license": "GPL-3.0",
+    "dependencies": {
+        "typo-js": "^1.0.3"
+    },
+    "devDependencies": {
+        "eslint": "4.6.1",
+        "istanbul": "^0.4.5",
+        "mocha": "^3.5.0",
+        "mocha-lcov-reporter": "^1.3.0",
+        "coveralls": "^2.13.1",
+        "codecov": "^2.3.0"
+    },
+    "engines": {
+        "node": ">= 6.0"
+    }
+}
