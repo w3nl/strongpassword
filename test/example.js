@@ -5,17 +5,19 @@ describe('Check the validator.', function() {
     var noPassword = new StrongPassword();
 
     it('Check if you dont send a password.', function() {
+        console.log(noPassword.reason);
         assert.equal(false, noPassword.isStrong);
     });
 
     var noPassword2 = new StrongPassword({});
 
     it('Check if you dont send a password, test 2.', function() {
+        console.log(noPassword2.reason);
         assert.equal(false, noPassword2.isStrong);
     });
 
     var strongPasswordValidation = new StrongPassword({
-        password: 'this is a strong password',
+        password: 'This is 1 strong password',
         locale:   'en_US'
     });
 
@@ -24,7 +26,7 @@ describe('Check the validator.', function() {
     });
 
     var strongPasswordValidation2 = new StrongPassword({
-        password:      'this is a strong password',
+        password:      'This is 1 strong password',
         locale:        'en_US',
         minimumLength: 10,
         minimumWords:  4
@@ -40,6 +42,7 @@ describe('Check the validator.', function() {
     });
 
     it('Check if the password is weak.', function() {
+        console.log(weakPasswordValidation.reason);
         assert.equal(false, weakPasswordValidation.isStrong);
     });
 
@@ -49,15 +52,17 @@ describe('Check the validator.', function() {
     });
 
     it('Check if the password is weak, test 2.', function() {
+        console.log(weakPasswordValidation2.reason);
         assert.equal(false, weakPasswordValidation2.isStrong);
     });
 
     var weakPasswordValidation3 = new StrongPassword({
-        password: 'Oo22zRAJ2rxA',
+        password: 'Oo22zRAJ2rxAOo22zRAJ2rxA',
         locale:   'en_US'
     });
 
     it('Check if the password is weak, test 3.', function() {
+        console.log(weakPasswordValidation3.reason);
         assert.equal(false, weakPasswordValidation3.isStrong);
     });
 
@@ -67,6 +72,7 @@ describe('Check the validator.', function() {
     });
 
     it('Check if the password is weak, test 4.', function() {
+        console.log(weakPasswordValidation4.reason);
         assert.equal(false, weakPasswordValidation4.isStrong);
     });
 
@@ -76,6 +82,37 @@ describe('Check the validator.', function() {
     });
 
     it('Check if the password is weak, test 5.', function() {
+        console.log(weakPasswordValidation5.reason);
         assert.equal(false, weakPasswordValidation5.isStrong);
+    });
+
+    var weakPasswordValidation6 = new StrongPassword({
+        password: 'This is not a strong password',
+        locale:   'en_US'
+    });
+
+    it('Check if the password is weak, test 6.', function() {
+        console.log(weakPasswordValidation6.reason);
+        assert.equal(false, weakPasswordValidation6.isStrong);
+    });
+
+    var weakPasswordValidation7 = new StrongPassword({
+        password: 'this is not 1 strong password',
+        locale:   'en_US'
+    });
+
+    it('Check if the password is weak, test 7.', function() {
+        console.log(weakPasswordValidation7.reason);
+        assert.equal(false, weakPasswordValidation7.isStrong);
+    });
+
+    var weakPasswordValidation8 = new StrongPassword({
+        password: '123 456 789 123',
+        locale:   'en_US'
+    });
+
+    it('Check if the password is weak, test 8.', function() {
+        console.log(weakPasswordValidation8.reason);
+        assert.equal(false, weakPasswordValidation8.isStrong);
     });
 });

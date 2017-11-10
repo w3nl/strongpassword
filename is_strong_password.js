@@ -10,15 +10,90 @@ class StrongPassword {
      * @param {object} params
      */
     constructor(params) {
+        let results;
+
+        this.strong = false;
+
         if(!params) {
+            this.reasonText = 'no params';
+
             return;
         }
 
         this.locale = params.locale || 'en_US';
         this.password = params.password;
-        this.minimumLength = params.minimumLength || 8;
-        this.minimumWords = params.minimumWords || 3;
-        this.version = '1.0.2';
+        this.minimumLength = params.minimumLength || 10;
+        this.minimumWords = params.minimumWords || 4;
+        this.version = '1.0.3';
+
+        results = this.check();
+        this.strong = results.strong;
+        this.reasonText = results.reason;
+    }
+
+    /**
+     * Check if the password is strong.
+     *
+     * @return {boolean}
+     */
+    check() {
+        let strong = true;
+        let reasonText;
+        const dictionary = new Typo(this.locale);
+
+        if(!this.password) {
+            return {
+                strong: false,
+                reason: 'empty'
+            };
+        }
+
+        if(this.password.length < this.minimumLength) {
+            return {
+                strong: false,
+                reason: 'to short'
+            };
+        }
+
+        if(this.password.split(' ').length < this.minimumWords) {
+            return {
+                strong: false,
+                reason: 'too few words'
+            };
+        }
+
+        if (!this.password.match(/\d+/g)) {
+            return {
+                strong: false,
+                reason: 'has no numbers'
+            };
+        }
+
+        if (!this.password.match(/[a-z]/g)) {
+            return {
+                strong: false,
+                reason: 'has no alphabet chars'
+            };
+        }
+
+        if (!this.password.match(/[A-Z]/g)) {
+            return {
+                strong: false,
+                reason: 'has no uppercase alphabet chars'
+            };
+        }
+
+        this.password.split(' ').forEach(function(val) {
+            if(!dictionary.check(val) && !Number.isInteger(val * 1)) {
+                reasonText = 'doesnt has a real word';
+                strong = false;
+            }
+        });
+
+        return {
+            strong: strong,
+            reason: reasonText
+        };
     }
 
     /**
@@ -27,29 +102,16 @@ class StrongPassword {
      * @return {boolean}
      */
     get isStrong() {
-        let strong = true;
-        const dictionary = new Typo(this.locale);
+        return this.strong;
+    }
 
-        if(!this.password) {
-            return false;
-        }
-
-        if(this.password.length < this.minimumLength) {
-            return false;
-        }
-
-        if(this.password.split(' ').length < this.minimumWords) {
-            return false;
-        }
-
-        this.password.split(' ').forEach(function(val) {
-            if(!dictionary.check(val)) {
-                strong = false;
-            }
-        });
-
-
-        return strong;
+    /**
+     * Return the reason if the password is not strong.
+     *
+     * @return {boolean}
+     */
+    get reason() {
+        return this.reasonText;
     }
 }
 
