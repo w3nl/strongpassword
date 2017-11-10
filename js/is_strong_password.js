@@ -41,7 +41,7 @@ class StrongPassword {
 
         this.dictionaries = params.dictionaries || false;
 
-        this.version = '1.1.1';
+        this.version = '1.1.2';
 
         results = this.check();
         this.strong = results.strong;
@@ -57,12 +57,14 @@ class StrongPassword {
         let strong = true;
         let reasonText;
         let notRealWords = [];
-        let dictionary = new Typo(this.locale);
+        let dictionary;
 
         if (this.dictionaries) {
             dictionary = new Typo(this.locale, false, false, {
                 dictionaryPath: this.dictionaries
             });
+        } else {
+            dictionary = new Typo(this.locale);
         }
 
         if (!this.password) {

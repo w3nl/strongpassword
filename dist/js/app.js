@@ -52,7 +52,7 @@ var StrongPassword = function () {
 
         this.dictionaries = params.dictionaries || false;
 
-        this.version = '1.1.1';
+        this.version = '1.1.2';
 
         results = this.check();
         this.strong = results.strong;
@@ -72,12 +72,14 @@ var StrongPassword = function () {
             var strong = true;
             var reasonText = void 0;
             var notRealWords = [];
-            var dictionary = new Typo(this.locale);
+            var dictionary = void 0;
 
             if (this.dictionaries) {
                 dictionary = new Typo(this.locale, false, false, {
                     dictionaryPath: this.dictionaries
                 });
+            } else {
+                dictionary = new Typo(this.locale);
             }
 
             if (!this.password) {
