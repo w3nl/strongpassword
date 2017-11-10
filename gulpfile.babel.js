@@ -77,7 +77,7 @@ export const taskConfig = {
             dist.scripts + 'app.js',
             {
                 babel:  true,
-                uglify: false
+                uglify: true
             }
         )
     ],
